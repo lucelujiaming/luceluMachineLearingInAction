@@ -1,0 +1,24 @@
+Python3 下安装python-votesmart
+
+在python2下安装python-smart还比较容易，而python3中由于很多函数库的变化直接使用python setup.py install 命令来安装的话会导致错误，而导致错误的原因就是python3中没有urllib2,而在votesmart中使用了urllib2函数库，所以需要修改votesmart.py文件将其中所有的urllib2库均换成urllib的相应写法，需要修改的地方如下：
+
+import urllib, urllib2-->import urllib,urllib.request,而要导入urllib.request是要使用其中的urlopen来打开相应的url
+
+response=urllib2.urlopen(url).read()-->response=urllib.request.urlopen(url).read()
+
+except urllib2.HTTPError,e:-->except urllib.URLError as e:
+
+except ValueError,e-->except ValueError as e #注意这里except格式写法的不同
+
+ 
+
+经过上述改造后，就可以用python setup.py install命令来愉快的安装voteSmart库了，然后使用 from votesmart import votesmart来导入到您的python中愉快的使用它吧
+
+注；以上针对python3.5.1 及 python-votesmart 0.3.3
+
+
+Vote Smart API Registration - Payment
+Your membership status will be reviewed. If approved, you will receive an activation e-mail with your API key. Your key may take up to 1 business day to be approved.
+
+Order Number: 7823120220511865
+
